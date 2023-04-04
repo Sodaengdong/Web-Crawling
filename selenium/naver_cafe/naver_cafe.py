@@ -35,7 +35,7 @@ driver = webdriver.Chrome(service=service)
 driver.get(url)
 
 driver.implicitly_wait(2)
-time
+
 #execute_script 함수 사용하여 자바스크트로 id, pw 넘겨주기
 driver.execute_script("document.getElementsByName('id')[0].value='" + id + "'")
 driver.execute_script("document.getElementsByName('pw')[0].value='" + pw + "'")
@@ -50,3 +50,19 @@ time.sleep(1)
 
 baseurl = "https://cafe.naver.com/swtester"
 driver.get(baseurl)
+
+# &search.menuid = : 게시판 번호
+# &search.page = : 데이터 수집 할 페이지 번호
+# &userDisplay = 50 : 한 페이지에 보여질 게시글 수
+
+clubid = "카페 클럽 ID 번호 입력"
+menuid = "메뉴 ID 번호 입력"
+pageNum = 1
+userDisplay = 50
+
+driver.get(
+    baseurl + 'ArtivaleList.nhn?search.clubid=' + str(clubid) + '&search.menuid=' + str(menuid)
+    + '&search.page=' + str(pageNum) + '&userDisplay=' + str(userDisplay))
+
+#iframe으로 접근
+driver.switch_to.default_content()
